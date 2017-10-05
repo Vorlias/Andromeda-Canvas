@@ -44,6 +44,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -54,7 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AndromedaCanvas.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="AndromedaCanvasApplication.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -64,6 +65,11 @@
       <Project>{6dbc821e-99e4-4735-8222-f5f3601e04ce}</Project>
       <Name>Andromeda</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AndromedaCanvas.resx">
+      <DependentUpon>AndromedaCanvas.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

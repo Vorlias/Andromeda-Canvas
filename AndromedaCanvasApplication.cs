@@ -1,4 +1,4 @@
-﻿using Andromeda.Canvas;
+﻿using AndromedaCanvas.Canvas;
 using Andromeda2D.System;
 using System;
 using System.Collections.Generic;
@@ -7,22 +7,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Andromeda.Canvas
+namespace AndromedaCanvas.Canvas
 {
     public class AndromedaCanvasApplication : Application
     {
         private BackgroundWorker _renderWorker;
-        private AndromedaCanvas _control;
+        private DrawingSurface _control;
         public delegate void CanvasFrameEvent();
 
         public event CanvasFrameEvent OnUpdate;
         public event CanvasFrameEvent OnRender;
 
-        internal AndromedaCanvasApplication(AndromedaCanvas handle) : base(handle.Handle)
+        public AndromedaCanvasApplication(DrawingSurface handle) : base(handle.Handle)
         {
             _renderWorker = new BackgroundWorker();
-            handle._controller = this;
             _control = handle;
+            handle.CustomRenderingEnabled = true;
         }
 
         protected override void Update()
@@ -37,13 +37,24 @@ namespace Andromeda.Canvas
 
         public override void Run()
         {
-            InitializeApplication();
+            
             _renderWorker.DoWork += WorkProcess;
             _renderWorker.RunWorkerAsync(_control);
         }
 
+        /// <summary>
+        /// Performs the update actions
+        /// </summary>
+        protected override void UpdateEvents()
+        {
+            System.Windows.Forms.Application.DoEvents();
+            Window.DispatchEvents();
+            Update();
+        }
+
         private void WorkProcess(object sender, DoWorkEventArgs e)
         {
+            InitializeApplication();
             while (Window.IsOpen)
             {
                 UpdateDeltaClock();
