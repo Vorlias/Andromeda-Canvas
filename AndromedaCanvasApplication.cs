@@ -51,10 +51,16 @@ namespace AndromedaCanvas.Canvas
             Window.DispatchEvents();
             Update();
         }
+        
+        public virtual void BeforeWork()
+        {
+
+        }
 
         private void WorkProcess(object sender, DoWorkEventArgs e)
         {
             InitializeApplication();
+            BeforeWork();
             while (Window.IsOpen)
             {
                 UpdateDeltaClock();
