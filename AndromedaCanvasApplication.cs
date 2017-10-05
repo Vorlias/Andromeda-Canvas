@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AndromedaCanvas.Canvas
 {
-    public class AndromedaCanvasApplication : Application
+    public class CanvasApplication : Application
     {
         private BackgroundWorker _renderWorker;
         private DrawingSurface _control;
@@ -18,7 +18,7 @@ namespace AndromedaCanvas.Canvas
         public event CanvasFrameEvent OnUpdate;
         public event CanvasFrameEvent OnRender;
 
-        public AndromedaCanvasApplication(DrawingSurface handle) : base(handle.Handle)
+        public CanvasApplication(DrawingSurface handle) : base(handle.Handle)
         {
             _renderWorker = new BackgroundWorker();
             _control = handle;
