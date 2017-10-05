@@ -28,5 +28,11 @@ namespace AndromedaCanvas.Canvas
             if (!CustomRenderingEnabled)
                 base.OnPaintBackground(pevent);
         }
+
+        public Vector2i SFMLSize
+        {
+            get => Size.ToSFML();
+            set => value.FromSFML();
+        }
     }
 }
