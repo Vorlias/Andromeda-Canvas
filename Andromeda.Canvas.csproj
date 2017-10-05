@@ -54,7 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AndromedaCanvas.cs">
+    <Compile Include="DrawingSurface.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="AndromedaCanvasApplication.cs" />
@@ -67,8 +67,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="AndromedaCanvas.resx">
-      <DependentUpon>AndromedaCanvas.cs</DependentUpon>
+    <EmbeddedResource Include="DrawingSurface.resx">
+      <DependentUpon>DrawingSurface.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

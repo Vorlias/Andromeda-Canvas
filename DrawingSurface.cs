@@ -1,6 +1,7 @@
 ﻿
 
 using Andromeda2D.System;
+using SFML.System;
 using System;
 using System.ComponentModel;
 using System.Windows.Forms;
