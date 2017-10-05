@@ -29,6 +29,14 @@ namespace AndromedaCanvas.Canvas
                 base.OnPaintBackground(pevent);
         }
 
+        public delegate void SurfaceResizedEvent(Vector2i size);
+        public event SurfaceResizedEvent Resized;
+
+        protected override void OnResize(EventArgs e)
+        {
+            Resized?.Invoke(Size.ToSFML());
+        }
+
         public Vector2i SFMLSize
         {
             get => Size.ToSFML();
