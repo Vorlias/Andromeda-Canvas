@@ -1,44 +1,25 @@
-﻿using AndromedaCanvas.Canvas;
-using Andromeda2D.System;
-using System;
-using System.Collections.Generic;
+﻿using Andromeda2D.System;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AndromedaCanvas.Canvas
 {
-
-    public class CanvasApplication : Application
+    /// <summary>
+    /// A state canvas application
+    /// </summary>
+    public class StateCanvasApplication : StateApplication
     {
         private BackgroundWorker _renderWorker;
         private DrawingSurface _control;
-        public delegate void CanvasFrameEvent();
 
-        public event CanvasFrameEvent OnUpdate;
-        public event CanvasFrameEvent OnRender;
-
-        public CanvasApplication(DrawingSurface handle) : base(handle.Handle)
+        public StateCanvasApplication(DrawingSurface handle) : base(handle.Handle)
         {
             _renderWorker = new BackgroundWorker();
             _control = handle;
             handle.CustomRenderingEnabled = true;
         }
 
-        protected override void Update()
-        {
-            OnUpdate?.Invoke();
-        }
-
-        protected override void Render()
-        {
-            OnRender?.Invoke();
-        }
-
         public override void Run()
         {
-            
             _renderWorker.DoWork += WorkProcess;
             _renderWorker.RunWorkerAsync(_control);
         }
@@ -52,7 +33,7 @@ namespace AndromedaCanvas.Canvas
             Window.DispatchEvents();
             Update();
         }
-        
+
         public virtual void BeforeWork()
         {
 
